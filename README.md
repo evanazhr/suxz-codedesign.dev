@@ -1,4 +1,11 @@
-# .
+# Slicing UI from codedesign.dev
+
+## Landing Page Suxz
+
+UI Slicing by evanazhr
+Design By Irham Shidiq
+
+[Figma Design](https://codedesign.dev/challenge/suxz)
 
 This template should help get you started developing with Vue 3 in Vite.
 

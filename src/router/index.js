@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
 import HomeView from '@/views/HomeView.vue'
-import AboutView from '@/views/AboutView.vue'
 import NoPageView from '@/views/NoPageView.vue'
 
 const routes = [
@@ -9,9 +8,8 @@ const routes = [
     path: '/',
     component: DefaultLayout,
     children: [
-      { path: '', component: HomeView },
-      { path: 'about', component: AboutView },
-      { path: '*', component: NoPageView },
+      { path: '', name: 'home', component: HomeView },
+      { path: '/:pathMatch(.*)*', name: 'NotFound', component: NoPageView },
     ],
   },
 ]
