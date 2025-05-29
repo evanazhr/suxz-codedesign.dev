@@ -37,7 +37,7 @@
           Study and understand the material class is more relaxed without time limit.
         </p>
       </div>
-      <div class="grid my-8 grid-cols-2 md:grid-cols-4 gap-8 md:gap-16">
+      <div class="grid my-8 grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
         <LearningCard
           data-aos="fade-up"
           data-aos-delay="300"
