@@ -1,3 +1,43 @@
+<script setup>
+const companyItems = [
+  {
+    title: 'Home',
+    link: '#',
+  },
+  {
+    title: 'Blogs',
+    link: '#',
+  },
+  {
+    title: 'Careers',
+    link: '#',
+  },
+  {
+    title: 'Portfolios',
+    link: '#',
+  },
+]
+
+const linkItems = [
+  {
+    title: 'Privacy & Policy',
+    link: '#',
+  },
+  {
+    title: 'Github',
+    link: '#',
+  },
+  {
+    title: 'Supports',
+    link: '#',
+  },
+  {
+    title: 'FAQs',
+    link: '#',
+  },
+]
+</script>
+
 <template>
   <footer data-aos="fade-up" data-aos-delay="500" class="py-20 w-full">
     <div
@@ -8,32 +48,28 @@
           to="/"
           class="text-lg font-bold text-gray-800 dark:text-gray-100 flex items-center justify-start flex-row gap-2"
         >
-          <!-- Ganti dengan path yang benar ke logo -->
-          <img src="@/assets/logo.svg" class="size-8" alt="logo" />
+          <img src="/assets/logo.svg" class="size-8" alt="logo" />
           <h1 class="text-black text-2xl">Suxz</h1>
         </router-link>
         <p>
-          UI Slicing by evanazhr<br />
-          design by irham Shidiq from
-          <a class="text-[#8C82FC]" href="codedesign.dev" target="_blank">codedesign.dev</a>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt
+          ut labore et dolore.
         </p>
       </div>
       <div class="flex flex-col gap-4">
         <h3 class="text-xl font-bold">Company</h3>
         <ul class="flex flex-col gap-4">
-          <li>Home</li>
-          <li>Blogs</li>
-          <li>Careers</li>
-          <li>Portfolios</li>
+          <li v-for="(item, index) in companyItems" :key="index">
+            <a href="#">{{ item.title }} </a>
+          </li>
         </ul>
       </div>
       <div class="flex flex-col gap-4">
         <h3 class="text-xl font-bold">Links</h3>
         <ul class="flex flex-col gap-4">
-          <li>Home</li>
-          <li>Blogs</li>
-          <li>Careers</li>
-          <li>Portfolios</li>
+          <li v-for="(item, index) in linkItems" :key="index">
+            <a href="#">{{ item.title }} </a>
+          </li>
         </ul>
       </div>
       <div class="flex flex-col gap-4">
@@ -79,5 +115,3 @@
     </div>
   </footer>
 </template>
-
-<script setup></script>

@@ -1,3 +1,50 @@
+<script setup>
+import ButtonPrimary from './ButtonPrimary.vue'
+import ButtonTransparent from './ButtonTransparent.vue'
+import { ref, onMounted, onUnmounted } from 'vue'
+
+const navOpen = ref(true)
+const navBar = ref(null)
+const hamburgerBtn = ref(null)
+
+function toggleNavbar() {
+  navOpen.value = !navOpen.value
+}
+
+function handleClickOutside(e) {
+  if (!navBar.value?.contains(e.target) && !hamburgerBtn.value?.contains(e.target)) {
+    navOpen.value = true
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('click', handleClickOutside)
+})
+
+const navItems = [
+  {
+    title: 'Home',
+    link: '#',
+  },
+  {
+    title: 'Learnings',
+    link: '#learnings',
+  },
+  {
+    title: 'About Us',
+    link: '#about',
+  },
+  {
+    title: 'Testimonials',
+    link: '#testimonial',
+  },
+]
+</script>
+
 <template>
   <header
     data-aos="fade-down"
@@ -13,41 +60,17 @@
             to="/"
             class="text-lg font-bold text-gray-800 dark:text-gray-100 flex items-center justify-center flex-row gap-2"
           >
-            <!-- Ganti dengan path yang benar ke logo -->
-            <img src="@/assets/logo.svg" class="size-8" alt="logo" />
+            <img src="/assets/logo.svg" class="size-8" alt="logo" />
             <h1 class="text-2xl">Suxz</h1>
           </router-link>
           <!-- nav tablet/pc -->
           <nav class="hidden md:flex">
             <ul class="flex gap-4 text-sm flex-row justify-evenly items-center">
-              <li>
-                <router-link to="/">
-                  <a
-                    class="dark:hover:text-gray-300 hover:text-[#8C82FC] before:absolute relative before:-bottom-1 before:content-[''] before:h-0.5 transition-all before:duration-300 before:w-0 hover:before:w-full before:bg-[#8C82FC] dark:text-white"
-                    href="#"
-                    >Home</a
-                  >
-                </router-link>
-              </li>
-              <li>
+              <li v-for="(item, index) in navItems" :key="index">
                 <a
                   class="dark:hover:text-gray-300 hover:text-[#8C82FC] before:absolute relative before:-bottom-1 before:content-[''] before:h-0.5 transition-all before:duration-300 before:w-0 hover:before:w-full before:bg-[#8C82FC] dark:text-white"
-                  href="#learnings"
-                  >Learnings</a
-                >
-              </li>
-              <li>
-                <a
-                  class="dark:hover:text-gray-300 hover:text-[#8C82FC] before:absolute relative before:-bottom-1 before:content-[''] before:h-0.5 transition-all before:duration-300 before:w-0 hover:before:w-full before:bg-[#8C82FC] dark:text-white"
-                  href="#about"
-                  >About Us</a
-                >
-              </li>
-              <li>
-                <a
-                  class="dark:hover:text-gray-300 hover:text-[#8C82FC] before:absolute relative before:-bottom-1 before:content-[''] before:h-0.5 transition-all before:duration-300 before:w-0 hover:before:w-full before:bg-[#8C82FC] dark:text-white"
-                  href="#testimonial"
-                  >Testimonial</a
+                  :href="item.link"
+                  >{{ item.title }}</a
                 >
               </li>
             </ul>
@@ -95,34 +118,11 @@
         class="gap-8 flex text-sm md:hidden duration-300 transition-all overflow-hidden flex-col py-4 justify-evenly items-center"
       >
         <ul :class="!navOpen ? 'flex' : 'hidden'" class="w-full flex flex-col gap-4">
-          <li>
-            <router-link to="/">
-              <a
-                class="hover:text-[#8C82FC] active:text-[#8C82FC] before:absolute relative before:-bottom-1 before:content-[''] before:h-0.5 transition-all before:duration-300 before:w-0 hover:before:w-full active:before:w-full before:bg-[#8C82FC] dark:text-white"
-                href="#"
-                >Home</a
-              >
-            </router-link>
-          </li>
-          <li>
+          <li v-for="(item, index) in navItems" :key="index">
             <a
               class="hover:text-[#8C82FC] active:text-[#8C82FC] before:absolute relative before:-bottom-1 before:content-[''] before:h-0.5 transition-all before:duration-300 before:w-0 hover:before:w-full active:before:w-full before:bg-[#8C82FC] dark:text-white"
-              href="#learnings"
-              >Learnings</a
-            >
-          </li>
-          <li>
-            <a
-              class="hover:text-[#8C82FC] active:text-[#8C82FC] before:absolute relative before:-bottom-1 before:content-[''] before:h-0.5 transition-all before:duration-300 before:w-0 hover:before:w-full active:before:w-full before:bg-[#8C82FC] dark:text-white"
-              href="#about"
-              >About Us</a
-            >
-          </li>
-          <li>
-            <a
-              class="hover:text-[#8C82FC] active:text-[#8C82FC] before:absolute relative before:-bottom-1 before:content-[''] before:h-0.5 transition-all before:duration-300 before:w-0 hover:before:w-full active:before:w-full before:bg-[#8C82FC] dark:text-white"
-              href="#testimonial"
-              >Testimonial</a
+              :href="item.link"
+              >{{ item.title }}</a
             >
           </li>
         </ul>
@@ -139,30 +139,3 @@
     </div>
   </header>
 </template>
-<script setup>
-import ButtonPrimary from './ui/ButtonPrimary.vue'
-import ButtonTransparent from './ui/ButtonTransparent.vue'
-import { ref, onMounted, onUnmounted } from 'vue'
-
-const navOpen = ref(true)
-const navBar = ref(null)
-const hamburgerBtn = ref(null)
-
-function toggleNavbar() {
-  navOpen.value = !navOpen.value
-}
-
-function handleClickOutside(e) {
-  if (!navBar.value?.contains(e.target) && !hamburgerBtn.value?.contains(e.target)) {
-    navOpen.value = true
-  }
-}
-
-onMounted(() => {
-  document.addEventListener('click', handleClickOutside)
-})
-
-onUnmounted(() => {
-  document.removeEventListener('click', handleClickOutside)
-})
-</script>

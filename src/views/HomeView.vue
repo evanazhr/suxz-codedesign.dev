@@ -1,4 +1,85 @@
-<!-- src/views/HomeView.vue -->
+<script setup>
+import LearningImg1 from '/assets/img/learning-1-img.png'
+import LearningImg2 from '/assets/img/learning-2-img.png'
+import LearningImg3 from '/assets/img/learning-3-img.png'
+import LearningImg4 from '/assets/img/learning-4-img.png'
+
+import testimonialImg1 from '/assets/img/testimonial/1.png'
+import testimonialImg2 from '/assets/img/testimonial/2.png'
+import testimonialImg3 from '/assets/img/testimonial/3.png'
+import testimonialImg4 from '/assets/img/testimonial/4.png'
+
+import ctaBg from '/assets/img/cta_bg.png'
+import AboutImg from '/assets/img/about_img.png'
+
+import ButtonPrimary from '../components/ButtonPrimary.vue'
+import ButtonSecondary from '../components/ButtonSecondary.vue'
+import ButtonTransparent from '../components/ButtonTransparent.vue'
+import LearningCard from '../components/LearningCard.vue'
+import Checklist from '../components/Checklist.vue'
+import Companies from '../components/Companies.vue'
+import TestimonialCard from '../components/TestimonialCard.vue'
+
+const learningCardItem = [
+  {
+    title: 'Starter',
+    description: 'Free class access for that start learning code and design',
+    animationDelay: 300,
+    img: LearningImg1,
+  },
+  {
+    title: 'Premium',
+    description: 'Advanced material from the Starter & learn to build projects',
+    animationDelay: 400,
+    img: LearningImg2,
+  },
+  {
+    title: 'Superstar',
+    description: 'Materials for experts who have completed the premium package',
+    animationDelay: 500,
+    variant: 'higlight',
+    img: LearningImg3,
+  },
+  {
+    title: 'Bootcamp',
+    description: 'Informatics science training program with the latest material',
+    animationDelay: 600,
+    img: LearningImg4,
+  },
+]
+
+const testimonialCardItem = [
+  {
+    img: testimonialImg1,
+    name: 'Jason Todd',
+    title: 'Enterpreneur',
+    text: 'The mentor is cool, how to convey each material is also detailed and easy to understand..”',
+    animationDelay: 300,
+  },
+  {
+    img: testimonialImg2,
+    name: 'Cassandra K',
+    title: 'Wen Developer',
+    text: '“The mentor is cool, how to convey each material is also detailed and easy to understand..”',
+    animationDelay: 400,
+  },
+  {
+    img: testimonialImg3,
+    name: 'Peter Parker',
+    title: 'PHP Enthusiast',
+    text: '“The mentor is cool, how to convey each material is also detailed and easy to understand..”',
+    animationDelay: 500,
+  },
+  {
+    img: testimonialImg4,
+    name: 'Jean Gray',
+    title: 'Designer',
+    text: '“The mentor is cool, how to convey each material is also detailed and easy to understand.."',
+    animationDelay: 600,
+  },
+]
+</script>
+
 <template>
   <!-- hero section -->
   <section class="w-full">
@@ -6,7 +87,7 @@
       class="grid grid-cols-1 place-items-center pt-12 gap-20 px-4 lg:px-8 md:grid-cols-2 container mx-auto"
     >
       <div class="md:order-2" data-aos="fade-left">
-        <img src="../assets/img/hero_img.png" alt="hero image" />
+        <img src="/assets/img/hero_img.png" alt="hero image" />
       </div>
       <div class="gap-8 flex flex-col mb-12" data-aos="fade-up">
         <div>
@@ -39,42 +120,14 @@
       </div>
       <div class="grid my-8 grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
         <LearningCard
+          v-for="(item, index) in learningCardItem"
+          :key="index"
           data-aos="fade-up"
-          data-aos-delay="300"
-          :img="LearningImg1"
-          title="Starter"
-          description="Free class access for that
-  start learning code and
-  design"
-        />
-        <LearningCard
-          data-aos="fade-up"
-          data-aos-delay="400"
-          :img="LearningImg2"
-          title="Premium"
-          description="Advanced material from
-the Starter &
-learn to
-build projects"
-        />
-        <LearningCard
-          data-aos="fade-up"
-          data-aos-delay="500"
-          :img="LearningImg3"
-          title="Superstar"
-          variant="higlight"
-          description="Materials for experts
-who have completed the
-premium package"
-        />
-        <LearningCard
-          data-aos="fade-up"
-          data-aos-delay="600"
-          :img="LearningImg4"
-          title="Bootcamp"
-          description="Informatics science
-training program with
-the latest material"
+          :data-aos-delay="item.animationDelay"
+          :img="item.img"
+          :variant="item.variant"
+          :title="item.title"
+          :description="item.description"
         />
       </div>
     </div>
@@ -131,51 +184,15 @@ the latest material"
         <p class="text-lg text-center">These are the words of people who have taken our class</p>
       </div>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-        <!--  -->
-
         <TestimonialCard
+          v-for="(item, index) in testimonialCardItem"
+          :key="index"
           data-aos="zoom-in-up"
-          data-aos-delay="300"
-          :img="testimonialImg1"
-          name="Jason Todd"
-          title="Entrepreneur"
-          text="“The mentor is cool, how
-to convey each material
-is also detailed and easy
-to understand..”"
-        />
-        <TestimonialCard
-          data-aos="zoom-in-up"
-          data-aos-delay="400"
-          :img="testimonialImg2"
-          name="Cassandra K"
-          title="Web Developer"
-          text="“The mentor is cool, how
-to convey each material
-is also detailed and easy
-to understand..”"
-        />
-        <TestimonialCard
-          data-aos="zoom-in-up"
-          data-aos-delay="500"
-          :img="testimonialImg3"
-          name="Peter Parker"
-          title="PHP Enthusiast"
-          text="“The mentor is cool, how
-to convey each material
-is also detailed and easy
-to understand..”"
-        />
-        <TestimonialCard
-          data-aos="zoom-in-up"
-          data-aos-delay="600"
-          :img="testimonialImg4"
-          name="Jean Gray"
-          title="Designer"
-          text='“The mentor is cool, how
-to convey each material
-is also detailed and easy
-to understand.."'
+          :data-aos-delay="item.animationDelay"
+          :img="item.img"
+          :name="item.name"
+          :title="item.title"
+          :text="item.text"
         />
       </div>
     </div>
@@ -205,26 +222,3 @@ to understand.."'
     </div>
   </section>
 </template>
-
-<script setup>
-import LearningImg1 from '../assets/img/learning-1-img.png'
-import LearningImg2 from '../assets/img/learning-2-img.png'
-import LearningImg3 from '../assets/img/learning-3-img.png'
-import LearningImg4 from '../assets/img/learning-4-img.png'
-
-import testimonialImg1 from '../assets/img/testimonial/1.png'
-import testimonialImg2 from '../assets/img/testimonial/2.png'
-import testimonialImg3 from '../assets/img/testimonial/3.png'
-import testimonialImg4 from '../assets/img/testimonial/4.png'
-
-import ctaBg from '../assets/img/cta_bg.png'
-import AboutImg from '../assets/img/about_img.png'
-
-import ButtonPrimary from '../components/ui/ButtonPrimary.vue'
-import ButtonSecondary from '../components/ui/ButtonSecondary.vue'
-import ButtonTransparent from '../components/ui/ButtonTransparent.vue'
-import LearningCard from '../components/ui/LearningCard.vue'
-import Checklist from '../components/ui/Checklist.vue'
-import Companies from '../components/ui/Companies.vue'
-import TestimonialCard from '../components/ui/TestimonialCard.vue'
-</script>
